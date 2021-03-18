@@ -1,0 +1,10 @@
+spring:
+  datasource:
+    hikari:
+      type: com.zaxxer.hikari.HIkariDataSource
+      jdbcUrl: jdbc:mariadb://localhost:3306/test?characterEncoding=UTF-8&serverTimezone=UTC
+      username: root
+      password: 1111
+      driver-class-name: org.mariadb.jdbc.Driver
+logging:
+  config: ./src/main/resources/logback-spring.xml
