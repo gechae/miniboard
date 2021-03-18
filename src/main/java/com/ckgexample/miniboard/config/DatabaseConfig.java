@@ -20,7 +20,7 @@ public class DatabaseConfig {
 
 	@Bean(destroyMethod = "close")
 	public HikariDataSource dataSource(DataSourceProperties dataSourceProperties, ApplicationPreparedEvent applicationProperties) {
-		log.debug("Configuring DataSoucre");
+		log.debug("Configuring DataSoucre2");
 		
 		HikariConfig config = new HikariConfig();
 		config.setDataSourceClassName(dataSourceProperties.getDriverClassName());
