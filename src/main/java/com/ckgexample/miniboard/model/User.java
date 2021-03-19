@@ -59,7 +59,7 @@ public class User {
 			, joinColumns = {@JoinColumn( name = "user_id", referencedColumnName = "user_id")}
 			, inverseJoinColumns = {@JoinColumn( name = "authority_name", referencedColumnName = "name")})
 	@BatchSize( size = 20 )
-	private Set<Authority> authorities = new HashSet<>();
+	//private Set<Authority> authorities = new HashSet<>();
 	
 	@OneToMany(mappedBy = "user")
 	@JsonBackReference
