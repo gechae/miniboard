@@ -2,14 +2,20 @@ spring:
   datasource:
     hikari:
       type: com.zaxxer.hikari.HIkariDataSource
-      jdbcUrl: jdbc:mariadb://localhost:3306/test?characterEncoding=UTF-8&serverTimezone=UTC
+      jdbcUrl: jdbc:mariadb://localhost:33006/test?characterEncoding=UTF-8&serverTimezone=UTC
       username: root
       password: 1111
       driver-class-name: org.mariadb.jdbc.Driver
+      connection-timeout: 15000
+      maximum-pool-size: 10
+      max-lifetime: 1800000
+      minimum-idle: 5
+      idle-timeout: 30000
+      connection-test-query: false
   jpa:
     properties:
-      hibernate:
+      hibernate: 
         dialect: org.hibernate.dialect.MySQLDialect
-        ddl-auto: create
-loggin:
+
+logging:
   config: ./src/main/resources/logback-spring.xml

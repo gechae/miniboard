@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+	<!-- Send debug messages to System.out -->
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<!-- By default, encoders are assigned the type ch.qos.logback.classic.encoder.PatternLayoutEncoder -->
+		<encoder>
+			<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{5} - %msg%n</pattern>
+		</encoder>
+	</appender>
+	
+	<!-- Send debug message to file -->
+	<appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+
+		<file>logs/miniBoard_.log</file>
+    	
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+		</encoder>
+    	
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+
+			<fileNamePattern>logs/miniBoard_%d{yyyy-MM-dd}.log</fileNamePattern>
+			
+			<!--  keep 30 days worth of history -->
+			<maxHistory>180</maxHistory>
+		</rollingPolicy>
+	</appender>
+    <logger name="com.chgexample.miniboard" level="DEBUG"/>
+	<root level="Debug">
+		<appender-ref ref="STDOUT" />
+		<appender-ref ref="FILE" />
+	</root>
+</configuration>
