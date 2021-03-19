@@ -6,5 +6,10 @@ spring:
       username: root
       password: 1111
       driver-class-name: org.mariadb.jdbc.Driver
-logging:
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+        ddl-auto: create
+loggin:
   config: ./src/main/resources/logback-spring.xml

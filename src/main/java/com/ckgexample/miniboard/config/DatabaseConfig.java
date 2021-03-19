@@ -20,7 +20,7 @@ public class DatabaseConfig {
 
 	@Bean(destroyMethod = "close")
 	public HikariDataSource dataSource(DataSourceProperties dataSourceProperties, ApplicationPreparedEvent applicationProperties) {
-		log.debug("Configuring DataSoucre");
+		log.debug("========================================= Configuring DataSoucre");
 		
 		HikariConfig config = new HikariConfig();
 		config.setDataSourceClassName(dataSourceProperties.getDriverClassName());
@@ -28,14 +28,14 @@ public class DatabaseConfig {
 		config.addDataSourceProperty("url", dataSourceProperties.getUrl());
 		
 		if (dataSourceProperties.getUsername() != null ) {
-			log.debug("DataSoucre user", dataSourceProperties.getUsername());
+			log.debug("======================================= DataSoucre user", dataSourceProperties.getUsername());
 			config.addDataSourceProperty("user", dataSourceProperties.getUsername());
 		} else {
 			config.addDataSourceProperty("user", "");
 		}
 		
 		if (dataSourceProperties.getPassword() != null) {
-			log.debug("DataSoucre password", dataSourceProperties.getPassword());
+			log.debug("========================================= DataSoucre password", dataSourceProperties.getPassword());
 			config.addDataSourceProperty("password", dataSourceProperties.getPassword());
 		} else {
 			config.addDataSourceProperty("password", "");
