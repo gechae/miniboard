@@ -1,21 +1,61 @@
+# application 이하에는 코드 작성시 명시적으로 프로퍼티를 주입시킬 대상을 나열
+# application 이하에는 datasource 속성은 추후 적용 시킬 JWT에서 사용할 속성들을 작성한 것을 확인할 수 있다.
+application:
+  datasource:
+    cacheProepStmts: true
+    prepStmtCacheSize: 250
+    prepStmtCacheSqlLimit: 2048
+    useServerPrepStmts: true
+  security:
+    jwt:
+      secret: 5867a8374e7c0f6284b177b48faf89e1c79d72d8
+      token-validity-in-seconds: 86400 # 24 hour
+      token-validity-in-seconds-for-remember-me: 2592000
+# spring과 관련된 라이브러리에서 사용하는 프로퍼티를 자성
 spring:
+  application:
+    name: miniBoard
+  profiles:
+    active: dev
+  devtools:
+    restart:
+      enabled: true
+    livereload:
+      enabled: true
   datasource:
     hikari:
       type: com.zaxxer.hikari.HIkariDataSource
-      jdbcUrl: jdbc:mariadb://localhost:33006/test?characterEncoding=UTF-8&serverTimezone=UTC
-      username: root
-      password: 1111
-      driver-class-name: org.mariadb.jdbc.Driver
+      #jdbcUrl: jdbc:mariadb://localhost:3306/test?characterEncoding=UTF-8&serverTimezone=UTC
+      url: jdbc:h2:mem:test;DB_CLOSE_DELAY=-1
+      username: sa
+      password: 
+      #driver-class-name: org.mariadb.jdbc.Driver
       connection-timeout: 15000
       maximum-pool-size: 10
       max-lifetime: 1800000
       minimum-idle: 5
       idle-timeout: 30000
       connection-test-query: false
+      #initialize: true
+  h2:
+    console:
+      enabled: true
   jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    database: H2
+    show-sql: false
+    format_sql: true
     properties:
-      hibernate: 
-        dialect: org.hibernate.dialect.MySQLDialect
+      hibernate:
+        id.new_generator_mappings: true
+        cache.use_second_level_cache: false
+        cache.use_query_cache: false
+        generate_statistics: true
+        #dialect: org.hibernate.dialect.MySQLDialect
+    hibernate:
+      ddl-auto: create-drop
 
 logging:
   config: ./src/main/resources/logback-spring.xml
+
+server:  port: 8081
