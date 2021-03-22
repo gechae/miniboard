@@ -6,7 +6,8 @@ import org.springframework.context.annotation.Configuration;
 import lombok.Data;
 
 @Configuration
-@ConfigurationProperties( prefix = "application", ignoreUnknownFields = false )
+//@ConfigurationProperties( prefix = "application", ignoreUnknownFields = false )
+@ConfigurationProperties( prefix = "application")
 @Data
 public class ApplicationProperties {
 

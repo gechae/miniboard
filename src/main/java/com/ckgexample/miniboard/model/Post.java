@@ -16,8 +16,8 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Length;
-import org.springframework.boot.autoconfigure.security.SecurityProperties.User;
 import org.springframework.data.annotation.CreatedBy;
+import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 
@@ -81,39 +81,44 @@ import lombok.Data;
  */
 @Data
 @Entity
-@Table(name = "post")
+@Table(name = "posts")
 public class Post {
 	
 	@Id 
 	@GeneratedValue( strategy = GenerationType.IDENTITY )
-	@Column(name = "post_id")
+	@Column(name="posts_id")
 	private Long id;
 	
-	@Column( name = "title", nullable = false )
+	@Column(name="title", nullable=false )
 	@Length(min = 1)
 	private String title;
 	
-	@Column( name = "body", columnDefinition = "TEXT" )
+	@Column(name="body", columnDefinition="TEXT" )
 	private String body;
 	
-	@ManyToOne
+
+	@ManyToOne 
 	@JsonManagedReference
-	@JoinColumn( name = "user_id", referencedColumnName = "user_id", nullable = false )
-	@NotNull
-	private User user;
-	
-	@OneToMany( mappedBy = "post", cascade = CascadeType.REMOVE )
-	private Set<Comment> comments;
+	@JoinColumn( name="users_id", referencedColumnName="users_id", nullable=false)
+	@NotNull 
+	private User users;
+		
+	@OneToMany( mappedBy="posts", cascade=CascadeType.REMOVE ) 
+	private	Set<Comment> comments;
 	
 	@CreatedBy
-	@Column( name = "created_by", length = 50, updatable = false )
+	@Column(name="created_by", length=50, updatable=false )
 	private String createdBy;
 	
+    @CreatedDate
+    @Column(name = "created_date")
+    private LocalDateTime createdDate = LocalDateTime.now();
+	
 	@LastModifiedBy
-	@Column( name = "last_modified_by", length = 50 )
+	@Column(name="last_modified_by", length=50 )
 	private String lastModifiedBy;
 	
 	@LastModifiedDate
-	@Column( name = "last_modified_date" )
+	@Column(name="last_modified_date")
 	private LocalDateTime lastModifiedDate = LocalDateTime.now();
 }

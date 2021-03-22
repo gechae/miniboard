@@ -19,9 +19,9 @@ import com.ckgexample.miniboard.model.User;
 @Repository
 public interface PostRepository extends JpaRepository<Post, Long> {
 	
-	Page<Post> findByUserOrderByCreateDateDesc(User user, Pageable pageable);
+	Page<Post> findByUsersOrderByCreatedDateDesc(User users, Pageable pageable);
 	
-	Page<Post> findAllByOrderByCreateDateDesc(Pageable pageable);
+	Page<Post> findAllByOrderByCreatedDateDesc(Pageable pageable);
 	
 	Optional<Post> findById(long Id);
 

@@ -30,38 +30,44 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 @Entity
-@Table(name= "user")
+@Table(name="users")
 @Data
-public class User {
+public class User extends BaseModel{
 	
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@Column( name = "user_id")
+	@Column(name="users_id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
 	@Email
-	@Size( min = 5, max = 30)
-	@Column( length = 30, unique = true, nullable = false)
+	@Size(min=5,max=30)
+	@Column(name="email",length=30, unique=true, nullable=false)
 	private String email;
 	
+	/*\
+	// 추가
+    @Size(min = 1, max = 30)
+    @Column(name = "user_name", length = 30, nullable = false)
+    private String userName;
+    */
 	@JsonIgnore
 	@NotNull
-	@Size( min = 60, max = 60)
-	@Column( name = "password_hash", length = 60, nullable = false)
+	@Size(min=60,max=60)
+	@Column( name="password_hash", length=60, nullable=false)
 	private String password;
 	
-	@JsonIgnore
-	@ManyToMany
-	@JoinTable( 
-			name = "user_authority"
-			, joinColumns = {@JoinColumn( name = "user_id", referencedColumnName = "user_id")}
-			, inverseJoinColumns = {@JoinColumn( name = "authority_name", referencedColumnName = "name")})
-	@BatchSize( size = 20 )
-	//private Set<Authority> authorities = new HashSet<>();
 	
-	@OneToMany(mappedBy = "user")
+	@JsonIgnore
+	@ManyToMany 
+	@JoinTable( name="users_authority" 
+				,joinColumns = @JoinColumn(	name="users_id", referencedColumnName="users_id" ) 
+				,inverseJoinColumns= @JoinColumn( name="authority_name", referencedColumnName="name" ))
+	@BatchSize( size = 20 )
+	private Set<Authority> authorities = new HashSet<>();
+	
+	@OneToMany(mappedBy="users")
 	@JsonBackReference
 	private Set<Post> posts;
 	
@@ -83,7 +89,37 @@ public class User {
 	@LastModifiedDate
 	@Column( name = "last_modified_date")
 	@JsonIgnore
-	private LocalDateTime lastMOdifiedDate = LocalDateTime.now();
+	private LocalDateTime lastModifiedDate = LocalDateTime.now();
 	
+	/*
+	// 추가
+	public User() {}
+
+    public User(Long id) {
+        this.id = id;
+    }
+
+    public User(Long id, String userName) {
+        this.id = id;
+        this.userName = userName;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        User user = (User) o;
+        return !(user.getId() == null || getId() == null) && Objects.equals(getId(), user.getId());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(getId());
+    }*/
 }
 

@@ -76,6 +76,11 @@
 	        <artifactId>spring-security-test</artifactId>
 	        <scope>test</scope>
 	    </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>${commons-lang3.version}</version>
+        </dependency>
 	    <!-- Add ENV 2 END-->
 	    <!-- DB 연결하기 위한 라이브러리 Start -->	   
 	    <dependency>
@@ -111,6 +116,16 @@
 		    <groupId>org.jetbrains</groupId>
 		    <artifactId>annotations</artifactId>
 		    <version>RELEASE</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.hibernate</groupId>
+		    <artifactId>hibernate-core</artifactId>
+		    <version>${hibernate.version}</version>
+		</dependency>
+		<dependency>
+		    <groupId>javax.xml.bind</groupId>
+		    <artifactId>jaxb-api</artifactId>
+		    <version>${javax-jaxb.version}</version>
 		</dependency>
 		<!-- DB 연결하기 위한 라이브러리 END-->
 		<dependency>

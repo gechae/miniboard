@@ -14,9 +14,8 @@ import com.ckgexample.miniboard.model.User;
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
 	
-	// id 로 User를 조회
+	//id 로 User를 조회 
 	Optional<User> findOneById(Long id);
 	// email로 User를 조회
 	Optional<User> findONeByEmail(String email);
-
 }
