@@ -34,9 +34,10 @@ spring:
       #driver-class-name: com.mysql.cj.jdbc.Driver
       connection-timeout: 15000
       maximum-pool-size: 10
-      max-lifetime: 50000
+      max-lifetime: 1800000
       minimum-idle: 5
       idle-timeout: 30000
+      leak-detection-threshold: 120
       #connection-test-query: "false"
       
       #initialize: true
@@ -56,7 +57,7 @@ spring:
         format_sql: true
         use_sql_comments: true
         id.new_generator_mappings: true
-        cache.use_second_level_cache: false
+        cache.use_second_level_cache: false 
         cache.use_query_cache: false
         generate_statistics: true
         generate-ddl: true

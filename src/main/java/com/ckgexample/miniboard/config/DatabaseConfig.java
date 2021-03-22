@@ -31,7 +31,7 @@ public class DatabaseConfig {
 	@Bean
 	public DataSource dataSource() {
 		DataSource dataSource = new HikariDataSource(hikariConfig());
-		System.out.println("DataSource connection1" + dataSource.toString());
+		System.out.println("DataSource connection" + dataSource.toString());
 		return dataSource;
 	}
 	
